@@ -37,14 +37,14 @@ def send_email(product_name, discounted_price, scrape_url):
     server.starttls()
     server.ehlo()
 
-    server.login('hemantgautam50@gmail.com', 'etdudlyvpbasntah')
+    server.login('enter you emailid', 'enter your password')
     subject = "Flipkart Product Price Came Down"
     body = "New Price for this product is: " + str(discounted_price) + "\n" + str(
         product_name) + "\n\n" + "Click on this URL to access\n" + scrape_url
     msg = f"Subject: {subject}\n\n{body}"
     server.sendmail(
-        'hemantgautam50@gmail.com',
-        'hemantgautam50@gmail.com',
+        'enter from email id',
+        'enter to email id',
         msg
     )
     print("Email is sent")
