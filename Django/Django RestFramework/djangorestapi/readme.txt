@@ -1,3 +1,7 @@
+Check the same project running on heroku - 
+https://djangorestframework.herokuapp.com/
+
+Steps to Follow before using this project - 
 1. This project is using Django Rest Framwork for creating rest api for courses app. Its a good learning project to understand how it works.
 2. sqllite.db file is not added into this project so after downloading project, run python manage.py migrate to move all the schema into 
 your local DB.
