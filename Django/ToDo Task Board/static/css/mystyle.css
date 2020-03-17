@@ -1,0 +1,30 @@
+.cross-list{text-decoration: line-through;}
+footer {
+}
+#bootstrap-overrides form#addboard{
+    display: block;
+    text-align: center;
+}
+#bootstrap-overrides form#user_login_form{
+    text-align: -webkit-center;
+}
+#bootstrap-overrides form#user_login_form input{
+    width: 30% !important;
+}
+#bootstrap-overrides .add-btn-right a,#bootstrap-overrides .add-btn-center a {background-color: #007bff;font-size: 1rem;}
+a.nav-link.inactive-hover:hover{color: #fff;background-color: #007bff;}
+.container .nav-pills li{padding-right: 5px;}
+#bootstrap-overrides h4.text-center,
+#bootstrap-overrides h3.text-center {font-weight: bold;}
+.dropdown-main {cursor:pointer;color:white;list-style-type: none;}
+/*
+#bootstrap-overrides th.contenteditable input{border: none;
+    width: 100%;
+    background: none;
+        height: 40px;}
+#bootstrap-overrides th.contenteditable {padding:0px;}
+*/
+.navbar-expand-lg {
+    flex-flow: row nowrap !important;
+    justify-content: flex-start !important;
+}
