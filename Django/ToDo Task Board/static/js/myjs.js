@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     // Code for expanding to do input field on hover
     var divWidth = $(".add_item").width();
-    $("input.add_item").mouseenter(function(){
+    $("input.add_item").on("click", function(){
         $(this).animate({
             width: "500"
         });

@@ -1,21 +1,8 @@
 {% extends 'base.html' %}
-    {% block pagetitle %}
-        ToDo|Board
-    {% endblock %}
 
 <br>
 {% block content %}
 {% csrf_token %}
-    {% if messages %}
-        {% for message in messages %}
-            <br>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{message}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-            </div>
-        {% endfor %}
-    {% endif %}
     {% if board_list %}
         <br>
         <h3 class="text-center">My Boards</h3>
@@ -23,7 +10,7 @@
                 <a href="{% url 'addboard' %}" class="btn btn-info btn-lg">
                   <span class="glyphicon glyphicon-plus-sign">Add New Board</span>
                     </a>
-              </p>
+        </p>
         <ul class="list-group">
         {% for board in board_list %}
             <li class="list-group-item-action list-group-item-light list-group-item d-flex justify-content-between align-items-center">
@@ -43,20 +30,4 @@
               </p>
     {% endif %}
 {% endblock %}
-
-{% block nav_bar_right %}
-    {% if is_user_login %}
-            <li class="nav-item dropdown dropdown-main">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    My Profile
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                     aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#">My Profile</a>
-                    <a class="dropdown-item" href="{% url 'boards' %}">My Boards</a>
-                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                </div>
-            </li>
-    {% endif %}
-{% endblock %}
+ 
