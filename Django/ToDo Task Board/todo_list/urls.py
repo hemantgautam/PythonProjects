@@ -6,7 +6,8 @@ urlpatterns = [
     path('strike/<list_id>/', views.strike, name='strike'),
     path('board/<board_id>/', views.BoardListView.as_view(), name='board'),
     path('boards', views.BoardsListView.as_view(), name='boards'),
-    path('deleteboard/<board_id>', views.deleteboard, name='deleteboard'),
+    # path('deleteboard/<board_id>', views.deleteboard, name='deleteboard'),
+    path('deleteboard/<int:pk>', views.BoardDeleteView.as_view(), name='deleteboard'),
     path('additem/', views.additem, name='additem'),
     path('addboard/', views.BoardCreateView.as_view(), name='addboard'),
 

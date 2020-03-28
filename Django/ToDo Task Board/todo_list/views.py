@@ -83,6 +83,17 @@ class BoardCreateView(LoginRequiredMixin, CreateView):
     #     return super().form_valid(form)
 
 
+class BoardDeleteView(LoginRequiredMixin, DeleteView):
+    model = BoardList
+    success_url = '/'
+    template_name = 'boardlist_confirm_delete.html'
+    def test_func(self):
+        user = self.get_object()
+        if self.request.user.id == user.userid:
+            return True
+        return False
+
+
 # function to delete single item
 @login_required
 def delete_items(request, list_id):
@@ -148,7 +159,6 @@ def deleteboard(request, board_id):
 # function to get board id from url
 def get_board_id(mixed_url):
     return (mixed_url.strip("/")).split("/")[1]
-
 
 # function to add new board
 # def addboard(request):
@@ -299,4 +309,3 @@ def get_board_id(mixed_url):
 #         return redirect(request.META.get('HTTP_REFERER', '/'))
 #     except:
 #         return redirect('boards')
-

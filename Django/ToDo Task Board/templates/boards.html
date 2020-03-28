@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
-
-<br>
 {% block content %}
 {% csrf_token %}
     {% if board_list %}
-        <br>
         <h3 class="text-center">My Boards</h3>
         <p class="add-btn-right text-right">
                 <a href="{% url 'addboard' %}" class="btn btn-info btn-lg">

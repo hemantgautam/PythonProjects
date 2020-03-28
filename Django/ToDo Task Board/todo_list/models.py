@@ -18,3 +18,6 @@ class TodoList(models.Model):
 class BoardList(models.Model):
     board_name = models.CharField(max_length=50)
     userid = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, )
+
+    def __str__(self):
+        return self.board_name
