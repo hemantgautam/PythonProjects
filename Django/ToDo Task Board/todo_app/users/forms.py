@@ -9,7 +9,7 @@ class UserLoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs.update({
-            'placeholder': 'your place holder'})
+            'label': 'your place holder'})
 
 
 class UserRegisterForm(UserCreationForm):
@@ -18,10 +18,13 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
-        widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-            'email': forms.TextInput(attrs={'placeholder': 'E-Mail'}),
-        }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exists():
+            raise forms.ValidationError('Email addresses must be unique.')
+        return email
 
 
 class UserUpdateForm(forms.ModelForm):

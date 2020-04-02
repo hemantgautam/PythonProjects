@@ -10,6 +10,8 @@ urlpatterns = [
     path('deleteboard/<int:pk>', views.BoardDeleteView.as_view(), name='deleteboard'),
     path('additem/', views.additem, name='additem'),
     path('addboard/', views.BoardCreateView.as_view(), name='addboard'),
+    path('addboard/', views.BoardCreateView.as_view(), name='addboard'),
+    path('board/<int:pk>/update', views.BoardUpdateView.as_view(), name='updateboard')
 
 	# path('uncross/<list_id>', views.uncross, name='uncross'),
     # path('uncross/<list_id>', views.uncross, name='uncross'),

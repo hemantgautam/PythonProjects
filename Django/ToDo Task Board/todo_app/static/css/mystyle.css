@@ -19,7 +19,7 @@ display: block;
     width: 30% !important;
 } */
 #bootstrap-overrides .add-btn-right a,#bootstrap-overrides .add-btn-center a {background-color: #007bff;font-size: 1rem;}
-a.nav-link.inactive-hover {background-color:lightgray;color:white;}
+a.nav-link.inactive-hover  {background-color:lightgray;color:white;}
 a.nav-link.inactive-hover:hover{color: #fff;background-color: #007bff;}
 .container .nav-pills li{padding-right: 5px;}
 #bootstrap-overrides h4.text-center,

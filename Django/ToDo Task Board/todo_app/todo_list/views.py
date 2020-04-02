@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect, HttpResponse
-from .models import TodoList, BoardList
-from .forms import TodoListForm, BoardListForm
 from django.contrib import messages
-from django.views.generic import ListView, TemplateView, CreateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse
+from django.views.generic import ListView, TemplateView, CreateView, DeleteView, UpdateView
+from .forms import TodoListForm
+from .models import TodoList, BoardList
 
 
 # This class List View lists all the boards under /boards url
@@ -26,7 +27,6 @@ class BoardListView(LoginRequiredMixin, TemplateView):
     template_name = 'todolist.html'
 
     def get_context_data(self, **kwargs):
-        # return HttpResponse(get_board_id(self.request.path))
         context = super(BoardListView, self).get_context_data(**kwargs)
         board_id = int((self.request.path.strip("/")).split("/")[1])
         context['board_get_id'] = board_id
@@ -37,31 +37,12 @@ class BoardListView(LoginRequiredMixin, TemplateView):
         self.request.session['current_board_id'] = board_id
         return context
 
-    # def get_board_id(mixed_url):
-    #     return (mixed_url.strip("/")).split("/")[1]
-
-    # def get_queryset(self):
-    #     queryset = super(BoardListView, self).get_queryset()
-    #     queryset = queryset.filter(userid=self.request.user.id)
-    #     return queryset
-    # model = TodoList
-    # template_name = 'todolist.html'
-    # context_object_name = 'todo_list'
-    # # paginate_by = 5
-    # ordering = ['-id']
-    #
-    # def get_context_object_name(self, object_list):
-    #
-    # def get_queryset(self):
-    #     queryset = super(BoardListView, self).get_queryset()
-    #     queryset = queryset.filter(userid=self.request.user.id)
-    #     return queryset
-
 
 class BoardCreateView(LoginRequiredMixin, CreateView):
     model = BoardList
     fields = ['board_name']
     template_name = 'addboard.html'
+    extra_context = {'button_name': 'Create Board'}
 
     def get_form_kwargs(self):
         kwargs = super(BoardCreateView, self).get_form_kwargs()
@@ -87,9 +68,25 @@ class BoardDeleteView(LoginRequiredMixin, DeleteView):
     model = BoardList
     success_url = '/'
     template_name = 'boardlist_confirm_delete.html'
+
     def test_func(self):
         user = self.get_object()
         if self.request.user.id == user.userid:
+            return True
+        return False
+
+
+class BoardUpdateView(UserPassesTestMixin, LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = BoardList
+    fields = ['board_name']
+    template_name = 'addboard.html'
+    success_url = '/'
+    success_message = "Board name Updated"
+    extra_context = {'button_name': 'Update Board'}
+
+    def test_func(self):
+        board = self.get_object()
+        if self.request.user == board.userid:
             return True
         return False
 
