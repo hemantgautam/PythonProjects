@@ -5,15 +5,18 @@ $(document).ready(function() {
 
     // Code for expanding to do input field on hover
     var divWidth = $(".add_item").width();
-    $("input.add_item").on("click", function(){
-        $(this).animate({
-            width: "500"
+    var window_width = $(window).width()
+    if(window_width > 780) {
+        $("input.add_item").on("click", function(){
+               $(this).animate({
+                    width: "400"
+                });
+        }).mouseleave(function(){
+            $(this).animate({
+                width: divWidth
+            });
         });
-    }).mouseleave(function(){
-        $(this).animate({
-            width: divWidth
-        });
-    });
+    }
 
 
 //    $('#to_do_table th.contenteditable input').keyup(function(e){

@@ -30,14 +30,14 @@
     </ul>
     {% endif %}
     <p>
-        {% if todo_list %}
-    <table id="to_do_table" class="table table-bordered table-hover">
+     {% if todo_list %}
+        <table id="to_do_table" class="table table-bordered table-hover">
         <thead>
         <tr class="table-secondary">
-            <th>No.</th>
-            <th>Task Name</th>
-            <th>Created On</th>
-            <th>Cross/Uncross</th>
+            <th class="custom-align-middle">No.</th>
+            <th class="custom-align-middle">Task Name</th>
+            <th class="custom-align-middle">Created On</th>
+            <th class="custom-align-middle">Strike</th>
             <th></th>
         </tr>
         </thead>
@@ -45,19 +45,19 @@
         {% for task in todo_list %}
         {% if task.completed %}
         <tr class="table-secondary">
-            <th>{{ forloop.counter }}</th>
-            <th class="cross-list contenteditable" contenteditable='false' class="cross-list">{{ task.item }}</th>
-            <th>{{ task.created_date }}</th>
-            <th><a href="{% url 'strike' task.id %}">Uncross</a></th>
-            <th><a href="{% url 'delete_item' task.id %}">Delete</a></th>
+            <td class="custom-align-middle">{{ forloop.counter }}</td>
+            <td class="cross-list contenteditable" contenteditable='false' class="cross-list">{{ task.item }}</td>
+            <td class="custom-align-middle">{{ task.created_date }}</td>
+            <td class="custom-align-middle"><a href="{% url 'strike' task.id %}">Uncross</a></td>
+            <td class="custom-align-middle"><a href="{% url 'delete_item' task.id %}">Delete</a></td>
         </tr>
         {% else %}
         <tr>
-            <th>{{ forloop.counter }}</th>
-            <th class="contenteditable" contenteditable='false'>{{ task.item }}</th>
-            <th>{{ task.created_date }}</th>
-            <th><a href="{% url 'strike' task.id %}">Cross Off</a></th>
-            <th><a href="{% url 'delete_item' task.id %}">Delete</a></th>
+            <td class="custom-align-middle">{{ forloop.counter }}</td>
+            <td class="contenteditable" contenteditable='false'>{{ task.item }}</td>
+            <td class="custom-align-middle">{{ task.created_date }}</td>
+            <td class="custom-align-middle"><a href="{% url 'strike' task.id %}">Cross Off</a></td>
+            <td class="custom-align-middle"><a href="{% url 'delete_item' task.id %}">Delete</a></td>
         </tr>
         {% endif %}
         {% endfor %}

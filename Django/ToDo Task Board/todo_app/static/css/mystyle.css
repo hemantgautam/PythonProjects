@@ -34,3 +34,4 @@ a.nav-link.inactive-hover:hover{color: #fff;background-color: #007bff;}
 body#bootstrap-overrides{display: flex;
     flex-direction: column;
     min-height: 100vh;}
+#bootstrap-overrides .custom-align-middle {text-align: center;}
